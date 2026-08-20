@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WhatsApp Tab Isolator diagnostics</title>
+    <link rel="stylesheet" href="diagnostics.css">
+  </head>
+  <body>
+    <main>
+      <header>
+        <p class="eyebrow">WhatsApp Tab Isolator</p>
+        <h1>Isolation diagnostics</h1>
+        <p>Capability status only. This page never reads or displays WhatsApp storage values.</p>
+      </header>
+
+      <section class="boundary">
+        <strong>Known boundary</strong>
+        <p>HTTP cookies, normal HTTP cache, origin quota, notification permission, and Chrome-profile state remain shared.</p>
+      </section>
+
+      <div class="toolbar">
+        <button id="refresh" type="button">Refresh</button>
+        <span id="summary" role="status">Loading…</span>
+      </div>
+      <section id="reports" class="reports"></section>
+    </main>
+    <script type="module" src="diagnostics.js"></script>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">WhatsApp Tab Isolator</title>
+  <desc id="desc">Two layered browser tabs separated by a vertical divider</desc>
+  <rect width="128" height="128" rx="28" fill="#0b141a"/>
+  <rect x="22" y="28" width="47" height="72" rx="12" fill="#25d366"/>
+  <rect x="59" y="28" width="47" height="72" rx="12" fill="#128c4b" stroke="#dff8e9" stroke-width="4"/>
+  <path d="M64 20v88" stroke="#fff" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="43" cy="47" r="5" fill="#0b141a"/>
+  <circle cx="85" cy="47" r="5" fill="#fff"/>
+</svg>

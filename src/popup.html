@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WhatsApp Tab Isolator</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main>
+      <header>
+        <div class="logo" aria-hidden="true">W</div>
+        <div>
+          <h1>WhatsApp sessions</h1>
+          <p>Local-only isolated tabs</p>
+        </div>
+      </header>
+
+      <section id="status" class="status" role="status" hidden></section>
+      <section id="sessions" class="sessions" aria-label="Sessions"></section>
+
+      <form id="create-form" class="create-form">
+        <input id="session-name" maxlength="32" placeholder="New session name" aria-label="New session name" required>
+        <input id="session-color" type="color" value="#7c3aed" aria-label="Session color">
+        <button type="submit" class="secondary">Add</button>
+      </form>
+
+      <footer>
+        <button id="diagnostics" type="button" class="link-button">Diagnostics</button>
+        <span id="tab-count">0 controlled tabs</span>
+      </footer>
+    </main>
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>

@@ -1,0 +1,67 @@
+name: Bug report
+description: Report a reproducible compatibility or isolation problem.
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Never attach real messages, cookies, tokens, browser profiles, QR codes, or exported account databases. Report suspected vulnerabilities privately through the Security tab.
+  - type: input
+    id: version
+    attributes:
+      label: Extension version or commit
+      placeholder: 0.1.0 or commit SHA
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Chrome version and operating system
+    validations:
+      required: true
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Affected surface
+      options:
+        - Session opening or restoration
+        - Web Storage
+        - IndexedDB
+        - Cache Storage
+        - BroadcastChannel or Web Locks
+        - OPFS
+        - Worker or service worker
+        - Forget or cleanup
+        - Popup or diagnostics
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+      description: Use synthetic labels and redact all account data.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Data safety
+      options:
+        - label: I removed personal data, messages, QR codes, cookies, tokens, and browser-profile material.
+          required: true
+        - label: This is not a vulnerability report. I will use the Security tab for vulnerabilities.
+          required: true

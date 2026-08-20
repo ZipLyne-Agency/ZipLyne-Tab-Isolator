@@ -1,0 +1,12 @@
+dist/
+artifacts/
+.DS_Store
+node_modules/
+.env
+.env.*
+*.key
+*.p12
+*.pem
+*.mobileprovision
+npm-debug.log*
+coverage/

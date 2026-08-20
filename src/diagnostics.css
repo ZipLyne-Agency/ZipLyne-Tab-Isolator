@@ -1,0 +1,37 @@
+:root {
+  color-scheme: light dark;
+  font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #f4f7f5;
+  color: #16231b;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; }
+main { width: min(920px, calc(100% - 32px)); margin: 48px auto; }
+.eyebrow { color: #128c4b; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; font-size: 12px; }
+h1 { margin: 6px 0; font-size: clamp(28px, 5vw, 44px); }
+header > p:last-child { color: #637268; max-width: 680px; }
+.boundary { margin: 24px 0; padding: 18px; border: 1px solid #ebc96f; border-radius: 14px; background: #fff8df; }
+.boundary p { margin: 6px 0 0; color: #6c571a; }
+.toolbar { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+button { padding: 9px 14px; border: 0; border-radius: 10px; background: #128c4b; color: white; font: 700 14px inherit; cursor: pointer; }
+#summary { color: #637268; font-size: 13px; }
+.reports { display: grid; gap: 12px; }
+.report { padding: 18px; border: 1px solid #dce6df; border-radius: 16px; background: white; box-shadow: 0 6px 24px #1234230a; }
+.report h2 { margin: 0 0 4px; font-size: 18px; }
+.report .state { color: #637268; font-size: 12px; }
+.capabilities { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 8px; margin-top: 14px; }
+.capability { padding: 9px 10px; border-radius: 9px; background: #f1f5f2; font-size: 12px; }
+.capability.ok::before { content: "✓ "; color: #08783e; font-weight: 900; }
+.capability.bad::before { content: "× "; color: #b42318; font-weight: 900; }
+.warnings { margin: 14px 0 0; padding-left: 20px; color: #875e00; font-size: 13px; }
+.empty { padding: 30px; text-align: center; color: #637268; border: 1px dashed #b9c9bf; border-radius: 16px; }
+
+@media (prefers-color-scheme: dark) {
+  :root { background: #0d1510; color: #eef6f0; }
+  header > p:last-child, #summary, .report .state, .empty { color: #9caf9f; }
+  .boundary { background: #2c2512; border-color: #705d21; }
+  .boundary p { color: #dac77f; }
+  .report { background: #152019; border-color: #314238; }
+  .capability { background: #1d2b22; }
+}
