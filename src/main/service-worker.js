@@ -24,6 +24,11 @@
     return;
   }
 
+  if (ctx.cookieMode) {
+    isolateFromWorkers();
+    return;
+  }
+
   const preflightKey = `${ctx.prefix}service-worker-preflight`;
   const preflightState = ctx.rawSessionStorage.getItem(preflightKey);
 
@@ -62,4 +67,32 @@
   }
 
   blockRegistration();
+
+  // Requests made by a service worker belong to no tab, so they would carry
+  // Chrome's shared cookies. Only workers whose scope covers this page matter;
+  // a narrow push-notification worker never controls it and stays registered.
+  function isolateFromWorkers() {
+    const nativeRegistrations = container.getRegistrations.bind(container);
+    const attemptsKey = `${ctx.prefix}service-worker-evictions`;
+
+    const evict = () => {
+      const attempts = Number(ctx.rawSessionStorage.getItem(attemptsKey) || 0) + 1;
+      ctx.rawSessionStorage.setItem(attemptsKey, String(attempts));
+      if (attempts > 3) {
+        ctx.warnings.push("A service worker keeps taking over this tab.");
+        return;
+      }
+      window.stop();
+      void nativeRegistrations()
+        .then((registrations) => Promise.all(registrations
+          .filter((registration) => location.href.startsWith(registration.scope))
+          .map((registration) => registration.unregister())))
+        .finally(() => location.reload());
+    };
+
+    blockRegistration();
+    container.addEventListener("controllerchange", evict);
+    if (container.controller) evict();
+    else ctx.rawSessionStorage.removeItem(attemptsKey);
+  }
 })();

@@ -3,7 +3,7 @@
   const ctx = window.__WTI_CONTEXT;
   if (!ctx) return;
 
-  if (ctx.blocked || ctx.cleanup) return;
+  if (ctx.plain || ctx.blocked || ctx.cleanup) return;
   if (window.top !== window) {
     ctx.state = ctx.active ? "ready-frame" : ctx.state;
     return;
@@ -19,6 +19,7 @@
 
   if (ctx.active) {
     const required = ["webStorage", "indexedDb", "broadcastChannel", "webLocks", "cacheStorage", "sharedWorkerBlocked", "serviceWorkerBlocked"];
+    if (ctx.cookieMode) required.push("cookieJar");
     const missing = required.filter((name) => !report.capabilities[name]);
     if (missing.length) report.warnings.push(`Unavailable isolation layers: ${missing.join(", ")}`);
     ctx.state = "ready";

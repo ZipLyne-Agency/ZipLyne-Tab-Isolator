@@ -2,13 +2,15 @@ import { readdir, readFile, stat } from "node:fs/promises";
 import { extname, resolve, relative } from "node:path";
 
 const root = resolve(import.meta.dirname, "..");
-const output = resolve(root, "dist");
+const output = resolve(process.env.WTI_OUT_DIR || resolve(root, "dist"));
 const manifest = JSON.parse(await readFile(resolve(output, "manifest.json"), "utf8"));
 const failures = [];
 
 if (manifest.manifest_version !== 3) failures.push("manifest_version must be 3");
-if (JSON.stringify(manifest.permissions) !== JSON.stringify(["storage"])) failures.push("permissions are broader than storage");
-if (JSON.stringify(manifest.host_permissions) !== JSON.stringify(["https://web.whatsapp.com/*"])) failures.push("host permission is not WhatsApp-only");
+const expectedPermissions = ["storage", "scripting", "webRequest", "webNavigation", "declarativeNetRequestWithHostAccess"];
+if (JSON.stringify(manifest.permissions) !== JSON.stringify(expectedPermissions)) failures.push("permissions differ from the reviewed list");
+if (JSON.stringify(manifest.host_permissions) !== JSON.stringify(["https://web.whatsapp.com/*"])) failures.push("only WhatsApp may be a required host; other sites must be granted one at a time");
+if (JSON.stringify(manifest.optional_host_permissions) !== JSON.stringify(["https://*/*", "wss://*/*"])) failures.push("optional hosts differ from the reviewed list");
 
 for (const path of await walk(output)) {
   const extension = extname(path);

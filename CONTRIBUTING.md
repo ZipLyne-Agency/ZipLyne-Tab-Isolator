@@ -1,12 +1,12 @@
 # Contributing
 
-Thanks for helping improve WhatsApp Tab Isolator.
+Thanks for helping improve ZipLyne Tab Isolator.
 
 ## Before you start
 
 - Search existing issues before opening a new one.
 - Keep changes focused and avoid adding dependencies unless they are essential.
-- Never include WhatsApp account data, screenshots containing personal messages, browser profiles, cookies, tokens, exported databases, or other credentials in an issue or pull request.
+- Never include account data, screenshots containing personal messages, browser profiles, cookies, tokens, exported databases, or other credentials in an issue or pull request.
 - For a suspected vulnerability, follow [SECURITY.md](SECURITY.md) instead of opening a public issue.
 
 ## Development

@@ -1,5 +1,5 @@
 blank_issues_enabled: false
 contact_links:
   - name: Report a vulnerability privately
-    url: https://github.com/ZipLyne-Agency/whatsapp-tab-isolator/security/advisories/new
+    url: https://github.com/ZipLyne-Agency/ZipLyne-Tab-Isolator/security/advisories/new
     about: Do not publish vulnerabilities or account data in a public issue.

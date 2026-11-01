@@ -3,6 +3,8 @@ import assert from "node:assert/strict";
 import {
   createProfile,
   isSessionId,
+  nextColor,
+  nextSessionDefaults,
   normalizeProfiles,
   sanitizeName,
   sessionIdFromUrl,
@@ -41,6 +43,39 @@ test("normalization rejects duplicates and malformed records", () => {
   const profile = createProfile("First");
   const normalized = normalizeProfiles([profile, { ...profile, name: "Duplicate" }, { id: "bad" }, null]);
   assert.deepEqual(normalized, [profile]);
+});
+
+test("sessions saved before sites existed stay WhatsApp sessions", () => {
+  const { siteId, ...legacy } = createProfile("Personal");
+  assert.equal(siteId, "whatsapp");
+  assert.equal(normalizeProfiles([legacy])[0].siteId, "whatsapp");
+  assert.equal(normalizeProfiles([legacy])[0].id, legacy.id);
+});
+
+test("cleanup URLs and session lookup follow the site's origin", () => {
+  const id = crypto.randomUUID();
+  const url = sessionUrl(id, { cleanup: true, cleanupToken: crypto.randomUUID(), origin: "https://claude.ai" });
+  assert.equal(new URL(url).origin, "https://claude.ai");
+  assert.equal(sessionIdFromUrl(url, "https://claude.ai"), id);
+  assert.equal(sessionIdFromUrl(url), null);
+});
+
+test("every new session gets the next free name, however many exist", () => {
+  const profiles = [createProfile("Main", "#7c3aed", "claude.ai"), createProfile("ZipLyne", "#e8590c", "claude.ai")];
+  assert.equal(nextSessionDefaults(profiles, "claude.ai").name, "Account 3");
+  profiles.push(createProfile("Account 3", "#7c3aed", "claude.ai"));
+  assert.equal(nextSessionDefaults(profiles, "claude.ai").name, "Account 4");
+  assert.equal(nextSessionDefaults(profiles, "other.example").name, "Account 1");
+  for (let index = 0; index < 40; index += 1) {
+    const { name, color } = nextSessionDefaults(profiles, "claude.ai");
+    assert.equal(profiles.some((profile) => profile.name === name), false);
+    profiles.push(createProfile(name, color, "claude.ai"));
+  }
+});
+
+test("the color button cycles through the palette from any color", () => {
+  assert.notEqual(nextColor("#7c3aed"), "#7c3aed");
+  assert.equal(nextColor("#25d366"), "#7c3aed");
 });
 
 test("names are bounded and never empty", () => {

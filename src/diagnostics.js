@@ -16,7 +16,7 @@ async function render() {
   if (!response.reports.length) {
     const empty = document.createElement("div");
     empty.className = "empty";
-    empty.textContent = "Open a named WhatsApp session from the extension popup, then refresh this page.";
+    empty.textContent = "No controlled tabs";
     reportsNode.append(empty);
     return;
   }

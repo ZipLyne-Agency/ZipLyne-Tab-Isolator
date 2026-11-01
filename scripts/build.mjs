@@ -4,7 +4,7 @@ import { deflateSync } from "node:zlib";
 
 const root = resolve(import.meta.dirname, "..");
 const source = resolve(root, "src");
-const output = resolve(root, "dist");
+const output = resolve(process.env.WTI_OUT_DIR || resolve(root, "dist"));
 
 await rm(output, { recursive: true, force: true });
 await mkdir(output, { recursive: true });

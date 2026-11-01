@@ -8,7 +8,7 @@
   // Worker without changing its origin or violating that CSP. Keep dedicated
   // Workers functional and surface the unsupported boundary explicitly.
   ctx.capabilities.dedicatedWorkerStorage = false;
-  ctx.warnings.push("Dedicated Worker storage is not isolated; current WhatsApp CSP prevents safe worker bootstrapping.");
+  ctx.warnings.push("Dedicated Worker storage is not isolated.");
 
   // SharedWorkers are cross-tab by design. Blocking them is safer than letting
   // two named sessions coordinate through one origin-wide worker instance.

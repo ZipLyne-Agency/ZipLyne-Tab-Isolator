@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
-  <title id="title">WhatsApp Tab Isolator</title>
+  <title id="title">ZipLyne Tab Isolator</title>
   <desc id="desc">Two layered browser tabs separated by a vertical divider</desc>
   <rect width="128" height="128" rx="28" fill="#0b141a"/>
   <rect x="22" y="28" width="47" height="72" rx="12" fill="#25d366"/>

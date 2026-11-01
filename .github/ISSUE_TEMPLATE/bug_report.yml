@@ -15,6 +15,13 @@ body:
     validations:
       required: true
   - type: input
+    id: site
+    attributes:
+      label: Site
+      description: The site this happened on, such as claude.ai or web.whatsapp.com.
+    validations:
+      required: true
+  - type: input
     id: browser
     attributes:
       label: Chrome version and operating system

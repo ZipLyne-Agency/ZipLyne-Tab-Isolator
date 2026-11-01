@@ -1,21 +1,29 @@
 {
   "manifest_version": 3,
-  "name": "WhatsApp Tab Isolator",
-  "version": "0.1.0",
-  "description": "Run named WhatsApp Web sessions in isolated tabs. Local-only and WhatsApp-only.",
+  "name": "ZipLyne Tab Isolator",
+  "version": "0.2.0",
+  "description": "Run multiple accounts of any website side by side in one Chrome profile. Local-only, no backend.",
   "minimum_chrome_version": "120",
   "permissions": [
-    "storage"
+    "storage",
+    "scripting",
+    "webRequest",
+    "webNavigation",
+    "declarativeNetRequestWithHostAccess"
   ],
   "host_permissions": [
     "https://web.whatsapp.com/*"
+  ],
+  "optional_host_permissions": [
+    "https://*/*",
+    "wss://*/*"
   ],
   "background": {
     "service_worker": "background.js",
     "type": "module"
   },
   "action": {
-    "default_title": "WhatsApp Tab Isolator",
+    "default_title": "ZipLyne Tab Isolator",
     "default_popup": "popup.html",
     "default_icon": {
       "16": "icons/icon-16.png",

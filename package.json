@@ -1,28 +1,33 @@
 {
-  "name": "whatsapp-tab-isolator",
-  "version": "0.1.0",
+  "name": "ziplyne-tab-isolator",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
-  "description": "Local-only WhatsApp Web session isolation for Chrome tabs.",
+  "description": "Run multiple accounts of any website side by side in one Chrome profile. Local-only, no backend.",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ZipLyne-Agency/whatsapp-tab-isolator.git"
+    "url": "git+https://github.com/ZipLyne-Agency/ZipLyne-Tab-Isolator.git"
   },
   "bugs": {
-    "url": "https://github.com/ZipLyne-Agency/whatsapp-tab-isolator/issues"
+    "url": "https://github.com/ZipLyne-Agency/ZipLyne-Tab-Isolator/issues"
   },
-  "homepage": "https://github.com/ZipLyne-Agency/whatsapp-tab-isolator#readme",
+  "homepage": "https://github.com/ZipLyne-Agency/ZipLyne-Tab-Isolator#readme",
   "keywords": [
     "chrome-extension",
     "manifest-v3",
     "multi-account",
+    "account-switcher",
+    "session-isolation",
+    "cookie-isolation",
     "privacy",
+    "claude",
     "whatsapp-web"
   ],
   "scripts": {
     "build": "node scripts/build.mjs",
     "test": "node --test tests/*.test.mjs",
+    "test:browser": "node tests/browser/isolation.mjs",
     "verify": "npm run build && npm test && node scripts/verify.mjs",
     "package": "npm run verify && node scripts/package.mjs"
   },

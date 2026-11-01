@@ -4,7 +4,7 @@ import { spawnSync } from "node:child_process";
 
 const root = resolve(import.meta.dirname, "..");
 const artifacts = resolve(root, "artifacts");
-const archive = resolve(artifacts, "whatsapp-tab-isolator.zip");
+const archive = resolve(artifacts, "ziplyne-tab-isolator.zip");
 await mkdir(artifacts, { recursive: true });
 await rm(archive, { force: true });
 
